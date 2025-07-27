@@ -1,17 +1,18 @@
-// Profile.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Calendar, Settings, LogOut } from 'lucide-react';
 import Footer from "../components/Footer";
 import Background from '../components/Background';
+import { auth, db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Profile = () => {
   const [user, setUser] = useState({
     name: '',
     email: '',
     gender: '',
-    plan: 'Free',
-    joinDate: '2024-01-15',
+    plan: '',
+    joinDate: '',
   });
 
   const navigate = useNavigate();
@@ -23,13 +24,34 @@ const Profile = () => {
       return;
     }
 
-    const name = localStorage.getItem('userName') || 'User';
-    const email = localStorage.getItem('userEmail') || 'user@example.com';
     const gender = localStorage.getItem('userGender')?.toLowerCase() || 'male';
-    const joinDate = localStorage.getItem('userJoinDate') || '2024-01-15';
-    const plan = localStorage.getItem('userPlan') || 'Free';
 
-    setUser({ name, email, gender, joinDate, plan });
+    const fetchUserProfile = async () => {
+      try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) throw new Error('User not logged in');
+
+        const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+        if (!userDoc.exists()) throw new Error('User data not found in Firestore');
+
+        const userData = userDoc.data();
+        const creationTime = currentUser.metadata.creationTime;
+
+        setUser({
+          name: userData.name || 'User',
+          email: currentUser.email || '',
+          gender: gender,
+          plan: userData.plan || 'Free',
+          joinDate: creationTime || '',
+        });
+      } catch (error) {
+        console.error('Profile Fetch Error:', error);
+        alert('Failed to load profile info. Try re-logging in.');
+        navigate('/login');
+      }
+    };
+
+    fetchUserProfile();
   }, [navigate]);
 
   const handleLogout = () => {
@@ -40,27 +62,21 @@ const Profile = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col">
-      {/* Animated background sits behind everything */}
       <div className="absolute inset-0 -z-10">
         <Background />
       </div>
 
-      {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           {/* Profile Card */}
           <div className="bg-white dark:bg-secondary-800 rounded-2xl shadow-md p-6 mb-6">
             <div className="flex items-center space-x-6">
               <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-primary-500 bg-primary-600 flex items-center justify-center">
-                {user.gender ? (
-                  <img
-                    src={user.gender === 'male' ? '/male-avatar.png' : '/female-avatar.png'}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <User size={40} className="text-white" />
-                )}
+                <img
+                  src={user.gender === 'male' ? '/male-avatar.png' : '/female-avatar.png'}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-secondary-900 dark:text-white">{user.name}</h1>
@@ -83,7 +99,7 @@ const Profile = () => {
                 <div>
                   <p className="text-xs text-secondary-500 dark:text-secondary-400">Member Since</p>
                   <p className="text-sm font-medium text-secondary-900 dark:text-white">
-                    {new Date(user.joinDate).toLocaleDateString()}
+                    {user.joinDate ? new Date(user.joinDate).toLocaleDateString() : '---'}
                   </p>
                 </div>
               </div>
@@ -132,7 +148,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

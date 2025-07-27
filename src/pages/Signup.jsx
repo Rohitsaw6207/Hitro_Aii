@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 const Signup = ({ setIsAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -36,37 +39,43 @@ const Signup = ({ setIsAuthenticated }) => {
     }
 
     setIsLoading(true);
-
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          gender: formData.gender,
-        }),
-      });
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Registration failed');
+      const profilePic =
+        formData.gender === 'male'
+          ? '/male-avatar.png'
+          : formData.gender === 'female'
+          ? '/female-avatar.png'
+          : '';
+
+      const userData = {
+        uid: user.uid,
+        name: formData.name,
+        email: formData.email,
+        gender: formData.gender,
+        profilePic,
+        premium: false,
+        premiumStarted: null,
+        createdAt: serverTimestamp()
+      };
+
+      await setDoc(doc(db, 'users', user.uid), userData);
+
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('hitro_user', JSON.stringify(userData));
+
+      if (typeof setIsAuthenticated === 'function') {
+        setIsAuthenticated(true);
       }
 
-      const data = await response.json();
-
-      // Save auth data (locally, if needed)
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', formData.email);
-      localStorage.setItem('userName', formData.name);
-      localStorage.setItem('userGender', formData.gender);
-
-      setIsAuthenticated(true);
-      navigate('/dashboard');
+      navigate('/profile');
     } catch (error) {
+      console.error('Signup Error:', error.message);
       alert(error.message);
     } finally {
       setIsLoading(false);

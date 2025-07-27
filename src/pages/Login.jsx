@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../firebase'; // adjust if needed
+import { doc, getDoc } from 'firebase/firestore';
 
 const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
@@ -19,34 +22,27 @@ const Login = ({ setIsAuthenticated }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-      const data = await response.json();
-      console.log("Login API Raw Response:", data);
+      // Fetch user profile from Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userData = userDoc.data();
 
-      if (!response.ok || !data.user) {
-        throw new Error(data?.message || 'Login failed');
-      }
+      if (!userData) throw new Error('No user data found in database.');
 
-      const { name, email: userEmail, gender } = data.user;
-
-      // Save to localStorage
+      // Store details in localStorage
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', userEmail || '');
-      localStorage.setItem('userName', name || '');
-      localStorage.setItem('userGender', gender || '');
+      localStorage.setItem('userEmail', user.email);
+      localStorage.setItem('userName', userData.name || '');
+      localStorage.setItem('userGender', userData.gender || '');
+      localStorage.setItem('userJoinDate', user.metadata.creationTime); // Optional
 
       setIsAuthenticated(true);
       navigate('/dashboard');
     } catch (error) {
+      console.error('Login Error:', error.message);
       alert(error.message || 'Login failed. Please try again.');
-      console.error("Login Error:", error);
     } finally {
       setIsLoading(false);
     }
