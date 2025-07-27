@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import ChatBox from '../components/ChatBox';
 import ChatMessage from '../components/ChatMessage';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// ✅ Initialize Gemini with your API key
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 const CodeChat = () => {
   const [messages, setMessages] = useState([]);
@@ -10,6 +14,7 @@ const CodeChat = () => {
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
+  // ✅ Check authentication + Set welcome message
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('isAuthenticated');
     if (!isAuthenticated) {
@@ -17,17 +22,21 @@ const CodeChat = () => {
       return;
     }
 
-    // Initial welcome message
     setMessages([
       {
         id: 1,
-        text: "👋 Hi! I'm your Code Assistant. I can help you debug, explain, or write code. What programming language or issue are you working on?",
+        text: `👋 Hey! I'm your **professional Code Assistant** 👨‍💻  
+I can help you debug, explain, or generate code in **any programming language**.  
+
+💡 Example: *Create a simple calculator in HTML*  
+Let’s get started!`,
         isUser: false,
         timestamp: new Date()
       }
     ]);
   }, [navigate]);
 
+  // ✅ Always scroll to bottom on new message
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
@@ -36,62 +45,60 @@ const CodeChat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSendMessage = async (message) => {
-    const newMessage = {
-      id: Date.now(),
-      text: message,
-      isUser: true,
+  // ✅ Handle user message
+const handleSendMessage = async (message) => {
+  const userMsg = {
+    id: Date.now(),
+    text: message,
+    isUser: true,
+    timestamp: new Date()
+  };
+
+  setMessages(prev => [...prev, userMsg]);
+  setIsLoading(true);
+
+  try {
+    const res = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt: message, type: "code" }) // 'code' maps to Code Assistant role
+    });
+
+    const data = await res.json();
+
+    const aiMsg = {
+      id: Date.now() + 1,
+      text: data.text || '⚠️ Gemini returned no response.',
+      isUser: false,
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, newMessage]);
-    setIsLoading(true);
+    setMessages(prev => [...prev, aiMsg]);
+  } catch (error) {
+    console.error('🔥 Gemini Proxy Error:', error);
+    setMessages(prev => [...prev, {
+      id: Date.now() + 1,
+      text: '🚫 Couldn’t reach Gemini. Please try again later.',
+      isUser: false,
+      timestamp: new Date()
+    }]);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
-    try {
-      const response = await fetch('http://localhost:8000/api/code-assistant', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt: message })
-      });
-
-      const data = await response.json();
-
-      const aiResponseText =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        '⚠️ Sorry, something went wrong.';
-
-      const aiResponse = {
-        id: Date.now() + 1,
-        text: aiResponseText,
-        isUser: false,
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, aiResponse]);
-    } catch (error) {
-      console.error('Error fetching AI response:', error);
-      setMessages(prev => [...prev, {
-        id: Date.now() + 1,
-        text: '🚫 Failed to connect to Code Assistant. Please try again later.',
-        isUser: false,
-        timestamp: new Date()
-      }]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="h-full flex flex-col">
       <div className="flex-1 overflow-y-auto scrollbar-thin">
-        <div className="max-w-4xl mx-auto">
-          {messages.map((message) => (
+        <div className="max-w-4xl mx-auto px-4 py-6">
+          {messages.map((msg) => (
             <ChatMessage
-              key={message.id}
-              message={message.text}
-              isUser={message.isUser}
+              key={msg.id}
+              message={msg.text}
+              isUser={msg.isUser}
             />
           ))}
           {isLoading && <LoadingSpinner />}
