@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: hitro-backend
+    env: docker
+    plan: free
+    dockerfilePath: hitro-backend/Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: sqlite
