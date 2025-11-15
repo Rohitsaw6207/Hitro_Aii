@@ -1,82 +1,130 @@
-<p align="center">🚀 H I T R O - A I</p>
-<p align="center">**HitroAI** is a professional full-stack AI SaaS product that bundles multiple AI productivity tools into one polished web application. Built for real usage with secure auth, theme support, a premium plan via Razorpay, and an admin dashboard with analytics.</p>
-<p align="center">Project Overview</p>
-<p align="center"> HitroAI provides a unified AI workspace with five intelligent tools, a profile & plan system, a dashboard to access all tools, and a subscription flow (Razorpay) for upgrading from Free → Premium. It is built with modern frontend and backend patterns for production readiness. </p>
+<h1 align="center">🤖 HitroAI – Full-Stack AI-driven Platform</h1>
 
-What it does (summary)
+<p align="center">
+HitroAI is a comprehensive, full-stack AI-driven SaaS platform designed to streamline productivity across multiple domains. It combines a modern React-based frontend with a robust Laravel backend to deliver fast performance, secure operations, and a smooth user experience. The platform leverages Firebase for real-time authentication and data handling, ensuring instant updates, reliable user management, and seamless cross-device access. Every part of the system is engineered for efficiency — from a modular architecture to a clean, user-friendly UI/UX workflow.
+</p>
 
-Provides Five AI tools: Code Assistant, Blog Generator, Student Assistant, Translator, Resume Assistant.
+<p align="center">
+The application offers five advanced AI tools built to solve practical needs such as coding assistance, content generation, student support, translation, and more. Users can toggle light/dark themes, use a powerful admin dashboard for analytics and control, and upgrade to premium features via a secure Razorpay payment flow. With scalable architecture and smart automation, HitroAI is a complete productivity suite for developers, students, writers, and professionals.
+</p>
 
-Offers Plans: Free plan & Upgraded/Premium plan (payment handled via Razorpay).
+---
 
-Includes a Profile section that shows basic user details and plan status.
+<h2 align="center">🖼️ Demo Preview</h2>
 
-Central Dashboard where users can open and use all AI tools.
+<h3 align="center">AI Tools</h3>
+<p align="center">
+  <img src="Preview-image/All-aitools.png" width="450" alt="All AI Tools">
+  <img src="Preview-image/aipage.png" width="450" alt="AI Page">
+</p>
 
-Admin panel to monitor users, premium status and usage analytics.
+<h3 align="center">Razorpay Integration</h3>
+<p align="center">
+  <img src="Preview-image/razorpay_interface.png" width="450" alt="Razorpay Interface">
+  <img src="Preview-image/razorpay_interface2.png" width="450" alt="Razorpay Interface 2">
+</p>
 
-<p align="center">Preview — AI Tools</p>
-<p align="center"> <img src="Preview-image/aipage.png" alt="AI Tools Preview" width="900px" /> </p>
-<p align="center">Razorpay Integration — UI Preview</p>
-<p align="center"> <!-- If you have these screenshots in your project root use the paths below. Replace/adjust names if needed. --> <img src="Preview-image/razorpay_interface.png" alt="Razorpay Checkout" width="420px" /> &nbsp;&nbsp; <img src="Preview-image/razorpay_interface2.png" alt="Razorpay Success" width="420px" /> </p>
-<p align="center">Full Demo — Autoplay Video</p>
-<p align="center"> <!-- HTML5 video tag: place preview.mp4 inside Preview-image/ folder. Autoplay may be blocked by some browsers unless muted. --> <video width="100%" controls autoplay muted loop playsinline> <source src="Preview-image/preview.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </p>
-<p align="center">Core Features (two-column compact layout)</p>
-<table width="100%"> <tr> <td width="50%" valign="top">
-🔐 Authentication
+<h3 align="center">Interface</h3>
+<p align="center">
+  <img src="Preview-image/planpage.png" width="250" alt="Plan Page">
+  <img src="Preview-image/interface.png" width="250" alt="Interface">
+  <img src="Preview-image/profilepage.png" width="250" alt="Profile Page">
+</p>
 
-Firebase Email / Password auth
+<h3 align="center">Admin Panel</h3>
+<p align="center">
+  <img src="Preview-image/adminpage.png" width="450" alt="Admin Page">
+  <img src="Preview-image/adminpage2.png" width="450" alt="Admin Page 2">
+</p>
 
-Secure session handling & realtime auth state
+###
 
-💳 Razorpay Premium System
+<h2 align="center">🎥 Video Demo</h2>
 
-Free plan & Premium plan (₹199 or as configured)
+<p align="center">
+  <!-- Some renderers support <video>; GitHub may not autoplay/inline but will provide the tag if supported. -->
+  <video width="800" controls style="max-width:100%;">
+    <source src="Preview-image/preview.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
 
-Instant premium activation on successful payment
+<p align="center">
+  <!-- Fallback: clickable thumbnail that opens the raw MP4 -->
+  <a href="Preview-image/preview.mp4">
+    <img src="Preview-image/preview-thumbnail.png" alt="Preview video (click to open)" width="800" style="max-width:100%;">
+  </a>
+</p>
 
-Premium status synced to user profile in realtime
+---
 
-🧭 Admin Panel
+<h2 align="center">⚙️ Features & Tech Stack</h2>
 
-Dashboard insights (users, premium conversions)
-
-Users table & Premium users filter
-
-Usage monitoring and admin controls
-
-</td> <td width="50%" valign="top">
-🤖 AI Tools (All five)
-
-Code Assistant — code generation & helper (Gemini)
-
-Blog Generator — SEO-friendly long-form drafts (Cohere)
-
-Student Assistant — study help, explanations (Gemini)
-
-Translator — multilingual translation (Gemini)
-
-Resume Assistant — ATS friendly resume creation (Cohere)
-
-🎨 Theme System
-
-Light & Dark theme toggle
-
-User preference persisted per account
-
-📈 Analytics
-
-Tool usage tracking
-
-Login & conversion analytics
-
-Realtime stats backed by Firestore
-
-</td> </tr>
+<p align="center">
+<table align="center" style="border-collapse:collapse; max-width:900px; width:100%;">
+  <tr>
+    <td valign="top" style="text-align:left; padding:16px; border:1px solid #2c2c2c; width:50%;">
+      <h3 align="center">Features</h3>
+      <ul>
+        <li>🔐 <strong>Authentication</strong> – Firebase login/signup (Email & Password)</li>
+        <li>🎨 <strong>Themes</strong> – Light and Dark theme toggle</li>
+        <li>🤖 <strong>AI Tools (5 Total)</strong>:
+          <ul>
+            <li>✨ Code Assistant (Gemini API)</li>
+            <li>🎓 Student Assistant (Gemini API)</li>
+            <li>🌐 Translator (Gemini API)</li>
+            <li>📝 Blog Writer (Cohere API)</li>
+            <li>📄 Resume Assistant (Cohere API)</li>
+          </ul>
+        </li>
+        <li>📊 <strong>Admin Panel</strong>: Dashboard insights (User & Premium Stats), Users Table, Premium Users Table</li>
+        <li>💸 <strong>Razorpay Payment Integration</strong>: Subscription cost: ₹199 — real-time premium status update after payment</li>
+        <li>📈 Firebase analytics with real-time usage tracking</li>
+      </ul>
+    </td>
+    <td valign="top" style="text-align:left; padding:16px; border:1px solid #2c2c2c; width:50%;">
+      <h3 align="center">Tech Stack</h3>
+      <ul>
+        <li><strong>Frontend</strong>: React, Tailwind CSS</li>
+        <li><strong>State Management</strong>: TanStack Query</li>
+        <li><strong>Backend</strong>: Laravel (API-based)</li>
+        <li><strong>Database</strong>: Firebase Firestore</li>
+        <li><strong>Authentication</strong>: Firebase Auth</li>
+        <li><strong>Payment Gateway</strong>: Razorpay</li>
+        <li><strong>AI APIs</strong>: Google Gemini & Cohere</li>
+      </ul>
+    </td>
+  </tr>
 </table>
-<p align="center">Tech Stack</p>
-<p align="center"> **Frontend:** React + Tailwind CSS + TanStack Query &nbsp; • &nbsp; **Backend:** Laravel (REST API) &nbsp; • &nbsp; **Database:** Firebase Firestore &nbsp; • &nbsp; **Auth:** Firebase Auth &nbsp; • &nbsp; **Payments:** Razorpay &nbsp; • &nbsp; **AI:** Gemini & Cohere </p>
-<p align="center">License</p>
-<p align="center"> © 2025 **Rohit Kumar** — All rights reserved. This repository and its source are private/intended for the author. Unauthorized commercial use, redistribution or reuse is strictly prohibited. </p>
-<p align="center">If you found this useful — give it a ⭐</p>
-<p align="center"> <!-- Author links centered with simple icons/emojis --> <a href="https://github.com/Rohitsaw6207" target="_blank" rel="noopener noreferrer">🐙 GitHub</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://www.linkedin.com/in/rohit-kumar-saw6207/" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a> </p>
+</p>
+
+---
+
+<h2 align="center">📜 License</h2>
+
+<p align="center">
+This project is fully developed and copyrighted © 2025 by <strong>Rohit Kumar</strong>.  
+Unauthorized copying, redistribution, or commercial use of this source code is strictly prohibited without prior written consent from the author.  
+All rights reserved.
+</p>
+
+---
+
+<h2 align="center">🧑‍💻 Author</h2>
+
+<p align="center">
+<strong>Rohit Kumar</strong>
+</p>
+
+<p align="center">
+<!-- Colorful standalone icons (no shield badges, no websites) -->
+<a href="https://github.com/Rohitsaw6207" target="_blank" rel="noopener noreferrer">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+       width="45" height="45" alt="GitHub Logo" />
+</a>
+&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/rohit-kumar-saw6207/" target="_blank" rel="noopener noreferrer">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" 
+       width="45" height="45" alt="LinkedIn Logo" />
+</a>
+</p>
