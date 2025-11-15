@@ -1,131 +1,82 @@
-# 🚀 HeteroAI – Full-Stack AI Productivity Platform
+<p align="center">🚀 H I T R O - A I</p>
+<p align="center">**HitroAI** is a professional full-stack AI SaaS product that bundles multiple AI productivity tools into one polished web application. Built for real usage with secure auth, theme support, a premium plan via Razorpay, and an admin dashboard with analytics.</p>
+<p align="center">Project Overview</p>
+<p align="center"> HitroAI provides a unified AI workspace with five intelligent tools, a profile & plan system, a dashboard to access all tools, and a subscription flow (Razorpay) for upgrading from Free → Premium. It is built with modern frontend and backend patterns for production readiness. </p>
 
-HeteroAI is a professional AI-powered SaaS platform built with a modern full‑stack architecture including **React**, **Laravel**, **Firebase**, **Razorpay**, and advanced AI models such as **Gemini** and **Cohere**. It delivers five integrated AI productivity tools, a premium subscription system, an admin dashboard, analytics, and a polished user interface.
+What it does (summary)
 
-This README is designed for showcasing the project — **no installation or setup instructions included**, as requested.
+Provides Five AI tools: Code Assistant, Blog Generator, Student Assistant, Translator, Resume Assistant.
 
----
+Offers Plans: Free plan & Upgraded/Premium plan (payment handled via Razorpay).
 
-# 🧩 Project Overview
+Includes a Profile section that shows basic user details and plan status.
 
-HeteroAI is built to solve real‑world productivity challenges. The platform provides:
+Central Dashboard where users can open and use all AI tools.
 
-* A unified AI workspace
-* Smooth UI/UX with dark/light themes
-* Secure authentication
-* Premium access using Razorpay
-* Powerful admin analytics
-* High‑performance backend architecture
+Admin panel to monitor users, premium status and usage analytics.
 
-Everything is engineered for real SaaS scalability and production usage.
+<p align="center">Preview — AI Tools</p>
+<p align="center"> <img src="Preview-image/aipage.png" alt="AI Tools Preview" width="900px" /> </p>
+<p align="center">Razorpay Integration — UI Preview</p>
+<p align="center"> <!-- If you have these screenshots in your project root use the paths below. Replace/adjust names if needed. --> <img src="Preview-image/razorpay_interface.png" alt="Razorpay Checkout" width="420px" /> &nbsp;&nbsp; <img src="Preview-image/razorpay_interface2.png" alt="Razorpay Success" width="420px" /> </p>
+<p align="center">Full Demo — Autoplay Video</p>
+<p align="center"> <!-- HTML5 video tag: place preview.mp4 inside Preview-image/ folder. Autoplay may be blocked by some browsers unless muted. --> <video width="100%" controls autoplay muted loop playsinline> <source src="Preview-image/preview.mp4" type="video/mp4"> Your browser does not support the video tag. </video> </p>
+<p align="center">Core Features (two-column compact layout)</p>
+<table width="100%"> <tr> <td width="50%" valign="top">
+🔐 Authentication
 
----
+Firebase Email / Password auth
 
-# 🖼️ Preview – Screenshots
+Secure session handling & realtime auth state
 
-## **AI Tools – First Row**
+💳 Razorpay Premium System
 
-| All AI Tools              | AI Page              |
-| ------------------------- | -------------------- |
-| ![](demo/All-aitools.png) | ![](demo/aipage.png) |
+Free plan & Premium plan (₹199 or as configured)
 
-## **Razorpay Interface – Second Row**
+Instant premium activation on successful payment
 
-| Checkout UI                      | Success UI                        |
-| -------------------------------- | --------------------------------- |
-| ![](demo/razorpay_interface.png) | ![](demo/razorpay_interface2.png) |
+Premium status synced to user profile in realtime
 
-## **User Interface – Last Row**
+🧭 Admin Panel
 
-| Interface               | Profile Page              | Plan Page              |
-| ----------------------- | ------------------------- | ---------------------- |
-| ![](demo/interface.png) | ![](demo/profilepage.png) | ![](demo/planpage.png) |
+Dashboard insights (users, premium conversions)
 
----
+Users table & Premium users filter
 
-# 🎥 Full Demo Video
+Usage monitoring and admin controls
 
-<video width="100%" controls autoplay muted loop>
-  <source src="demo/preview.mp4" type="video/mp4" />
-</video>
+</td> <td width="50%" valign="top">
+🤖 AI Tools (All five)
 
----
+Code Assistant — code generation & helper (Gemini)
 
-# ⚙️ Core Features – Compact 2‑Column Layout
+Blog Generator — SEO-friendly long-form drafts (Cohere)
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
+Student Assistant — study help, explanations (Gemini)
 
-### 🔐 Authentication
+Translator — multilingual translation (Gemini)
 
-* Firebase Email/Password login
-* Secure session handling
-* Realtime auth sync
+Resume Assistant — ATS friendly resume creation (Cohere)
 
-### 🤖 AI Tools (5 Total)
+🎨 Theme System
 
-* Code Assistant (Gemini)
-* Student Assistant (Gemini)
-* Translator (Gemini)
-* Blog Writer (Cohere)
-* Resume Assistant (Cohere)
+Light & Dark theme toggle
 
-### 💳 Razorpay Premium System
+User preference persisted per account
 
-* ₹199 subscription
-* Instant premium activation
-* Live database sync
+📈 Analytics
 
-    </td>
-    <td width="50%" valign="top">
+Tool usage tracking
 
-### 🎨 Themes
+Login & conversion analytics
 
-* Light mode
-* Dark mode
-* Auto‑save user theme
+Realtime stats backed by Firestore
 
-### 📊 Admin Dashboard
-
-* User analytics
-* Premium tracking
-* Usage insights
-* Secure admin access
-
-### 📈 Analytics
-
-* Login tracking
-* Tool usage graphs
-* Conversion tracking
-
-    </td>
-  </tr>
-
+</td> </tr>
 </table>
-
----
-
-# 🧱 Tech Stack
-
-**Frontend:** React, TailwindCSS, TanStack Query
-**Backend:** Laravel (REST APIs)
-**Database:** Firestore
-**Authentication:** Firebase Auth
-**Payments:** Razorpay
-**AI Models:** Gemini & Cohere
-
----
-
-# 📜 License
-
-© 2025 **Rohit Kumar** — All rights reserved.
-Unauthorised copying, redistribution, or commercial usage is strictly prohibited.
-
----
-
-# 👤 Author
-
-**Rohit Kumar**
-GitHub: [https://github.com/Rohitsaw6207](https://github.com/Rohitsaw6207)
-LinkedIn: [https://www.linkedin.com/in/rohit-kumar-saw6207/](https://www.linkedin.com/in/rohit-kumar-saw6207/)
+<p align="center">Tech Stack</p>
+<p align="center"> **Frontend:** React + Tailwind CSS + TanStack Query &nbsp; • &nbsp; **Backend:** Laravel (REST API) &nbsp; • &nbsp; **Database:** Firebase Firestore &nbsp; • &nbsp; **Auth:** Firebase Auth &nbsp; • &nbsp; **Payments:** Razorpay &nbsp; • &nbsp; **AI:** Gemini & Cohere </p>
+<p align="center">License</p>
+<p align="center"> © 2025 **Rohit Kumar** — All rights reserved. This repository and its source are private/intended for the author. Unauthorized commercial use, redistribution or reuse is strictly prohibited. </p>
+<p align="center">If you found this useful — give it a ⭐</p>
+<p align="center"> <!-- Author links centered with simple icons/emojis --> <a href="https://github.com/Rohitsaw6207" target="_blank" rel="noopener noreferrer">🐙 GitHub</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://www.linkedin.com/in/rohit-kumar-saw6207/" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a> </p>
