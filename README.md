@@ -117,14 +117,10 @@ All rights reserved.
 </p>
 
 <p align="center">
-<!-- Colorful standalone icons (no shield badges, no websites) -->
-<a href="https://github.com/Rohitsaw6207" target="_blank" rel="noopener noreferrer">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
-       width="45" height="45" alt="GitHub Logo" />
-</a>
-&nbsp;&nbsp;&nbsp;
-<a href="https://www.linkedin.com/in/rohit-kumar-saw6207/" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub (SkillIcons) -->
+  <img src="https://skillicons.dev/icons?i=github" height="40" alt="github logo" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" 
-       width="45" height="45" alt="LinkedIn Logo" />
-</a>
+       height="40" alt="linkedin logo" />
 </p>
+
+---
