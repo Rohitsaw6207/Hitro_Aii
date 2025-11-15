@@ -14,14 +14,14 @@ The application offers five advanced AI tools built to solve practical needs suc
 
 <h3 align="center">AI Tools</h3>
 <p align="center">
-  <img src="Preview-image/All-aitools.png" width="450" alt="All AI Tools">
-  <img src="Preview-image/aipage.png" width="450" alt="AI Page">
+  <img src="Preview-image/All-aitools.png" width="400" alt="All AI Tools">
+  <img src="Preview-image/aipage.png" width="400" alt="AI Page">
 </p>
 
 <h3 align="center">Razorpay Integration</h3>
 <p align="center">
-  <img src="Preview-image/razorpay_interface.png" width="450" alt="Razorpay Interface">
-  <img src="Preview-image/razorpay_interface2.png" width="450" alt="Razorpay Interface 2">
+  <img src="Preview-image/razorpay_interface.png" width="400" alt="Razorpay Interface">
+  <img src="Preview-image/razorpay_interface2.png" width="400" alt="Razorpay Interface 2">
 </p>
 
 <h3 align="center">Interface</h3>
@@ -33,8 +33,8 @@ The application offers five advanced AI tools built to solve practical needs suc
 
 <h3 align="center">Admin Panel</h3>
 <p align="center">
-  <img src="Preview-image/adminpage.png" width="450" alt="Admin Page">
-  <img src="Preview-image/adminpage2.png" width="450" alt="Admin Page 2">
+  <img src="Preview-image/adminpage.png" width="400" alt="Admin Page">
+  <img src="Preview-image/adminpage2.png" width="400" alt="Admin Page 2">
 </p>
 
 ###
